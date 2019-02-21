@@ -1,9 +1,5 @@
-# Matasano - [Cryptopals](http://cryptopals.com/)
+# [Cryptopals](http://cryptopals.com/)
 
-[![Build Status](https://travis-ci.org/JesseEmond/matasano-cryptopals.svg?branch=unittests)](https://travis-ci.org/JesseEmond/matasano-cryptopals)
-
-*Note: most links below are just links to files within this repo for your
-convenience.*
 ## Set 1: Basics
 - [x] [1. Convert hex to base64](src/01.py)
 
