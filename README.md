@@ -1,10 +1,15 @@
 # [Cryptopals](http://cryptopals.com/)
 
+## Setup
+```py
+python3 -m venv venv
+source venv/bin/activate
+pip install -m requirements.txt
+```
+
 ## Set 1: Basics
 - [x] [1. Convert hex to base64](src/01.py)
 
-  Trivial introduction to hex parsing to get you going. I
-  [implemented b64decode](src/mybase64.py) out of curiosity.
 
 - [x] [2. Fixed XOR](src/02.py)
 
@@ -83,7 +88,7 @@
 
   When using ECB, two identical plaintext blocks will encrypt to the same
   ciphertext block.
-    
+
   Therefore, a block that contains duplicate plaintext blocks will contain
   duplicate ciphertext blocks once encrypted.
 
@@ -176,7 +181,7 @@
 
   We repeat the steps up until the point where we reach the last block. Then, we
   will eventually hit the padding.
-  
+
   If the padding happens to be 1 byte, we will successfully find it (this is
   just like bruteforcing a normal byte that just happens to be `0x01`).
 
@@ -231,7 +236,7 @@
   fixed value (therefore fooling us into thinking that we have padded 1 more
   byte than we really have), we can try with 2 different fixed values, e.g.
   `[0] * 32` and `[1] * 32`.
-  
+
   Then, one can use the index where the duplicate blocks begin to find where the
   first block after the prefix starts. With that information, we can find the
   amount of padding that was required to pad the prefix to a multiple of
@@ -322,9 +327,9 @@
 - [x] [18. Implement CTR, the stream cipher mode](src/18.py)
 
   There isn't much to say here... We generate a keystream with:
-  
+
   `aes(key, nonce + counter)`
-  
+
   Where `nonce` and `counter` are 64-bits integers encoded in little-endian and
   `counter` is the amount of blocks generated so far.
 
@@ -348,7 +353,7 @@
   This task surprisingly took a little longer than just copying Wikipedia's
   pseudocode. I spent some time wondering why Python's random would yield
   different numbers (and state!) from me, so I investigated.
-  
+
   I compared with C++'s std::mt19937, which yielded the same results as
   me. I couldn't find posts complaining about this specifically so I took a
   look at [CPython's source](https://hg.python.org/cpython/file/3.4/Lib/random.py).
@@ -358,7 +363,7 @@
   the seed could be greater than 32-bits and just uses all of the bits of
   the seed in a different procedure. The result: it ends up with a
   different state from us.
-  
+
   Just to make sure I looked at how `numpy`'s random and it does generate
   the same state as us when seeding. Therefore, the tests for this one use
   values that I extracted with C++'s implementation.
@@ -391,7 +396,7 @@
   00010101 y >> 3
   10111111 y ^ y >> 3
   ```
-  
+
   We notice that the first 3 bits of the result will match the first 3 bits of
   the original `y`. Then, those original 3 bits will be used (once shifted) to
   xor with the original `y`. By using the known first 3 bits, we can recover
@@ -441,7 +446,7 @@
   and capture the produced plaintext from the error message.
 
   This means that `P1` is the result of `KEY ^ P3` (since `P3` is unchanged by
-  xoring with `0`). We can recover the key through: 
+  xoring with `0`). We can recover the key through:
   `P1 ^ P3 = (P3 ^ KEY) ^ P3 = KEY`.
 
 - [x] [28. Implement a SHA-1 keyed MAC](src/28.py)
