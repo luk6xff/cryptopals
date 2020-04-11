@@ -13,7 +13,7 @@ pip install -m requirements.txt
 
 - [x] [2. Fixed XOR](src/02.py)
 
-  Introduction to XOR between strings. Implementation in [xor.py](src/xor.py).
+  Introduction to XOR between strings
 
 - [x] [3. Single-byte XOR cipher](src/03.py)
 
