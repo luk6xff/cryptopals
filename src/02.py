@@ -20,20 +20,15 @@ def xor_combine(s1, s2):
     b1 = bytes.fromhex(s1)
     b2 = bytes.fromhex(s2)
     assert(len(b1) == len(b2))
-    xored = ''
-    for i in range(len(b1)):
-        xored += chr(b1[i] ^ b2[i])
-    return xored
+    return bytes([x^y for x,y in zip(b1, b2)])
 
 
 
-# s1 = '1c0111001f010100061a024b53535009181c'
-# s2 = '686974207468652062756c6c277320657965'
-s1 = '1c01'
-s2 = '6869'
+s1 = '1c0111001f010100061a024b53535009181c'
+s2 = '686974207468652062756c6c277320657965'
 s_expected = '746865206b696420646f6e277420706c6179'
 
 
-result = xor_combine(s1, s2)
-print(result)
-assert(bytes.hex(result) == s_expected)
+s_result = xor_combine(s1, s2)
+print(bytes.hex(s_result), s_expected)
+assert(bytes.hex(s_result) == s_expected)
