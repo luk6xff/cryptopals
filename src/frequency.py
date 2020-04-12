@@ -1,4 +1,4 @@
-def english_test(bytes_):
+def english_test(bytes_data):
     # From http://www.data-compression.com/english.html
     freqs = {
         'a': 0.0651738,
@@ -31,7 +31,7 @@ def english_test(bytes_):
     }
 
     try:
-        msg = bytes_.decode('ascii').lower()
+        msg = bytes_data.decode('ascii').lower()
     except:
         return 0
 
