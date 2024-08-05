@@ -23,5 +23,7 @@ def fixed_xor(s1: str, s2: str) -> str:
 
 s1 = '1c0111001f010100061a024b53535009181c'
 s2 = '686974207468652062756c6c277320657965'
+s_expected = '746865206b696420646f6e277420706c6179'
 
 print(fixed_xor(s1, s2))
+assert(fixed_xor(s1, s2) == s_expected)
