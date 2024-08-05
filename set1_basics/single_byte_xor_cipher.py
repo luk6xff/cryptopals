@@ -19,7 +19,7 @@ import binascii
 def xor_decrypt(s: str, c: int) -> str:
     s_bytes = binascii.unhexlify(s)
     xor_bytes = bytes([a ^ c for a in s_bytes])
-    return xor_bytes.decode('utf-8')
+    return xor_bytes.decode('ascii')
 
 
 if __name__ == '__main__':
