@@ -19,13 +19,14 @@ import binascii
 def xor_decrypt(s: str, c: int) -> str:
     s_bytes = binascii.unhexlify(s)
     xor_bytes = bytes([a ^ c for a in s_bytes])
-    return xor_bytes.decode()
-
-s = '1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736'
-
-for c in range(ord('a'), ord('z')+1):
-    print(f'Key: {chr(c)}\tDecrypted: {xor_decrypt(s, c)}')
+    return xor_bytes.decode('utf-8')
 
 
-print(xor_decrypt(s, ord('x'))) # Cooking MC's like a pound of bacon
+if __name__ == '__main__':
+    s = '1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736'
+
+    for c in range(ord('a'), ord('z')+1):
+        print(f'Key: {chr(c)}\tDecrypted: {xor_decrypt(s, c)}')
+
+    print(xor_decrypt(s, ord('x'))) # Cooking MC's like a pound of bacon
 
